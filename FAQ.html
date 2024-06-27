@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions</title>
+    <link rel="icon" type="image/x-icon" href="images/fanimages/logo.jpg" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+        
+        .faq-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #d8e6f2;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-container h1 {
+            text-align: center;
+            color: #2d3b4c;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .faq-container h1:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .faq {
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .faq:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .faq h2 {
+            color: #2d3b4c;
+            font-size: 1.25em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .faq p {
+            color: #4a5a6a;
+            font-size: 1em;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .faq-column {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .faq-column .faq {
+            flex: 0 0 48%;
+            box-sizing: border-box;
+            padding: 10px;
+            background-color: #e0f0ff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .faq-column .faq:nth-child(odd) {
+            margin-right: 2%;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-column .faq {
+                flex: 0 0 100%;
+                margin-right: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .faq-container {
+                padding: 10px;
+            }
+            .faq-container h1 {
+                font-size: 2em;
+            }
+            .faq h2 {
+                font-size: 1.15em;
+            }
+            .faq p {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="images/fanimages/logo.jpg" />
+<!-- Bootstrap icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+<style>
+    .team-member {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .team-member img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+    
+    .team-member h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .team-member .social-links {
+        margin-top: 10px;
+    }
+    
+    .team-member .social-links a {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 20px;
+        color: #000;
+    }
+</style>
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">CF.CO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="aboutcompany.html">About Company</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactus.html">Contact Us </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-light" type="button" id="cartButton">
+              <i class="bi-cart-fill me-1"></i>
+              Cart
+              <span
+                class="badge bg-light text-dark ms-1 rounded-pill"
+                id="cart-count"
+                >0</span
+              >
+            </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <body>
+        <div class="faq-container">
+            <h1>Frequently asked questions</h1>
+            <div class="faq-column">
+                <div class="faq">
+                    <h2>What is a mini fan?</h2>
+                    <p>A mini fan is a small, portable device that provides a quick and convenient way to cool off in various settings, such as at work, outdoors, or during travel. It is designed for personal use and often operates on either battery or USB
+                        power.
+                    </p>
+                </div>
+                <div class="faq">
+                    <h2>What are the advantages of using a mini fan?</h2>
+                    <p>Using a mini fan offers several advantages, including portability, energy efficiency, and the ability to provide instant relief from heat. Many mini fans also feature quiet operation, adjustable settings, and compact designs that make
+                        them easy to carry and use anywhere.</p>
+                </div>
+                <div class="faq">
+                    <h2>What types of mini fans are available?</h2>
+                    <p>There are various types of mini fans, including handheld fans, clip-on fans, wearable fans, and desk fans. Handheld fans are held by hand, while clip-on fans can be attached to various surfaces. Wearable fans are designed to be worn
+                        around the neck or clipped to clothing, and desk fans are suitable for workspaces.</p>
+                </div>
+                <div class="faq">
+                    <h2>How do I choose the right mini fan for my needs?</h2>
+                    <p>When choosing a mini fan, consider factors such as size, battery life, power source, portability, noise level, and additional features such as adjustable speeds or misting functions.</p>
+                </div>
+                <div class="faq">
+                    <h2>Are mini fans suitable for outdoor activities?</h2>
+                    <p>Yes, mini fans are ideal for outdoor activities such as hiking, camping, sports events, and picnics. They provide a convenient way to stay cool and comfortable in other outdoor scenarios.</p>
+                </div>
+                <div class="faq">
+                    <h2>How do I maintain and clean a mini fan?</h2>
+                    <p>To maintain a mini fan, ensure that it is turned off and disconnected from the power source before cleaning. Use a soft, damp cloth to wipe the fan blades and exterior surfaces. Avoid using harsh chemicals or submerging the fan in
+                        water.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">
+                    Copyright &copy; Cloud Fan Company 2024
+                </p>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+
+</html>

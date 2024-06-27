@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Cart</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="images/fanimages/logo.jpg" />
+    <!-- Bootstrap icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="index.html">CF.CO</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Company</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us </a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Review</a></li>
+          </ul>
+          <form class="d-flex">
+            <button class="btn btn-outline-light" type="button" id="cartButton">
+              <i class="bi-cart-fill me-1"></i>
+              Cart
+              <span
+                class="badge bg-light text-dark ms-1 rounded-pill"
+                id="cart-count"
+                >0</span
+              >
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- Cart section-->
+    <section class="py-5">
+      <div class="container px-4 px-lg-5 my-5">
+        <h1 class="display-5 fw-bolder mb-4">Shopping Cart</h1>
+        <div class="row gx-4 gx-lg-5">
+          <div class="col-md-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="cartTableBody">
+                <!-- Cart items will be dynamically inserted here -->
+              </tbody>
+            </table>
+            <div class="text-end">
+              <button class="btn btn-outline-dark" id="checkoutButton">
+                Proceed to Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Cloud Fan Company 2024
+        </p>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- Custom JS for cart functionality -->
+    <!-- Custom JS for cart functionality -->
+    <script>
+      // Initialize cart
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Function to update cart count in the UI
+      function updateCartCount() {
+        document.getElementById("cart-count").textContent = cart.reduce(
+          (total, item) => total + item.quantity,
+          0
+        );
+      }
+
+      // Function to render cart items in the table
+      function renderCartItems() {
+        const cartTableBody = document.getElementById("cartTableBody");
+        cartTableBody.innerHTML = "";
+
+        cart.forEach((item, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                <td>${item.name}</td>
+                <td>$${item.price.toFixed(2)}</td>
+                <td>
+                    <input type="number" class="form-control text-center" value="${
+                      item.quantity
+                    }" min="1" style="max-width: 5rem" data-index="${index}">
+                </td>
+                <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                <td>
+                    <button class="btn btn-outline-dark btn-sm" data-index="${index}">Remove</button>
+                </td>
+            `;
+          cartTableBody.appendChild(row);
+        });
+
+        // Add event listeners to quantity inputs and remove buttons
+        cartTableBody
+          .querySelectorAll('input[type="number"]')
+          .forEach((input) => {
+            input.addEventListener("change", updateQuantity);
+          });
+        cartTableBody.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", removeItem);
+        });
+      }
+
+      // Function to update item quantity
+      function updateQuantity(event) {
+        const index = event.target.dataset.index;
+        const newQuantity = parseInt(event.target.value);
+        cart[index].quantity = newQuantity;
+
+        // Save cart to local storage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Re-render cart items
+        renderCartItems();
+
+        // Update cart count in the UI
+        updateCartCount();
+      }
+
+      // Function to remove item from cart
+      function removeItem(event) {
+        const index = event.target.dataset.index;
+        cart.splice(index, 1);
+
+        // Save cart to local storage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Re-render cart items
+        renderCartItems();
+
+        // Update cart count in the UI
+        updateCartCount();
+      }
+
+      // Initialize cart page
+      document.addEventListener("DOMContentLoaded", () => {
+        updateCartCount();
+        renderCartItems();
+      });
+
+      // Checkout button click event
+      document
+        .getElementById("checkoutButton")
+        .addEventListener("click", () => {
+          // Clear cart in localStorage
+          localStorage.removeItem("cart");
+
+          // Reset cart variable
+          cart = [];
+
+          // Update cart count in the UI
+          updateCartCount();
+
+          // Show thank you message (replace with your actual logic)
+          alert("Thank you for your purchase!");
+
+          // Refresh the page
+          window.location.reload();
+        });
+
+      // Redirect to cart page on cart button click
+      document.getElementById("cartButton").addEventListener("click", () => {
+        window.location.href = "cart.html";
+      });
+    </script>
+  </body>
+</html>
